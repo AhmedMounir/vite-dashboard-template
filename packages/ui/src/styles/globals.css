@@ -1,133 +1,294 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+/* Type: Inter everywhere, figures included (tabular digits); Arabic letters from IBM Plex Sans Arabic. */
+@import "@fontsource/inter/300.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/ibm-plex-sans-arabic/400.css";
+@import "@fontsource/ibm-plex-sans-arabic/500.css";
+@import "@fontsource/ibm-plex-sans-arabic/600.css";
+@import "./themes.css";
 
+/* Dark mode is the `.dark` class on <html> (set before first paint by apps/web/index.html). */
 @custom-variant dark (&:is(.dark *));
 @source "../../../apps/**/*.{ts,tsx}";
 @source "../../../components/**/*.{ts,tsx}";
 @source "../**/*.{ts,tsx}";
 
-@theme inline {
-    --font-heading: var(--font-sans);
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
-    --font-sans: 'Geist Variable', sans-serif;
-}
-
+/*
+ * The default "warm" palette on shadcn's token names: warm off-white surfaces,
+ * white cards, ink text. Green/red are signals only (positive/negative).
+ * Extra roles beyond shadcn: subtle/faint/faintest text, line, well, chips,
+ * sample tag, status, series.
+ */
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.488 0.243 264.376);
-    --primary-foreground: oklch(0.97 0.014 254.604);
-    --secondary: oklch(0.967 0.001 286.375);
-    --secondary-foreground: oklch(0.21 0.006 285.885);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.809 0.105 251.813);
-    --chart-2: oklch(0.623 0.214 259.815);
-    --chart-3: oklch(0.546 0.245 262.881);
-    --chart-4: oklch(0.488 0.243 264.376);
-    --chart-5: oklch(0.424 0.199 265.638);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.546 0.245 262.881);
-    --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+  color-scheme: light;
+  --app-font: "Inter", "IBM Plex Sans Arabic", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* "Mono" is the figures' role, not a monospace face: Inter with tabular digits. */
+  --mono-font: var(--app-font);
+  --radius: 0.75rem;
+
+  --background: #f7f6f2;
+  --foreground: #1c1b19;
+  --card: #ffffff;
+  --card-foreground: #1c1b19;
+  --popover: #ffffff;
+  --popover-foreground: #1c1b19;
+  --primary: #1c1b19;
+  --primary-foreground: #ffffff;
+  --secondary: #efede8;
+  --secondary-foreground: #1c1b19;
+  --muted: #efede8;
+  --muted-foreground: #6b6862;
+  --subtle-foreground: #4a4843;
+  --faint-foreground: #8a877f;
+  --faintest-foreground: #a29f97;
+  --accent: #f3f1ec;
+  --accent-foreground: #1c1b19;
+  --destructive: #dc2626;
+  --border: #e4e2dc;
+  --input: #e0ddd6;
+  --ring: #a29f97;
+  --line: #c9c5bc;
+  --well: #faf9f6;
+
+  --sidebar: #f1efea;
+  --sidebar-foreground: #1c1b19;
+  --sidebar-primary: #1c1b19;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #1c1b19;
+  --sidebar-border: #e4e2dc;
+  --sidebar-ring: #a29f97;
+
+  --up: #16a34a;
+  --down: #dc2626;
+  --positive: #16a34a;
+  --negative: #dc2626;
+  --chip-neutral: #e6e3dc;
+  --chip-negative: #fee2e2;
+  --chip-negative-foreground: #991b1b;
+  --chip-positive: #dcfce7;
+  --chip-positive-foreground: #166534;
+  --sample: #efe6c8;
+  --sample-foreground: #6b5a1e;
+  --warning-foreground: #8f6a14;
+  --status-good: #16a34a;
+  --status-warning: #c9971f;
+  --status-neutral: #a29f97;
+
+  --chart-1: #16a34a;
+  --chart-2: #dc2626;
+  --chart-3: #1c1b19;
+  --chart-4: #c9971f;
+  --chart-5: #8a877f;
+  --chart-6: #166534;
+  --chart-7: #991b1b;
+  --chart-8: #4a4843;
+  --chart-other: #c9c5bc;
+  --series: #2563eb;
 }
 
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.424 0.199 265.638);
-    --primary-foreground: oklch(0.97 0.014 254.604);
-    --secondary: oklch(0.274 0.006 286.033);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.809 0.105 251.813);
-    --chart-2: oklch(0.623 0.214 259.815);
-    --chart-3: oklch(0.546 0.245 262.881);
-    --chart-4: oklch(0.488 0.243 264.376);
-    --chart-5: oklch(0.424 0.199 265.638);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.623 0.214 259.815);
-    --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+/*
+ * Warm dark. By default the app draws dark mode as shadcn's neutral instead
+ * (lib/theme.ts: warm + dark → data-base="neutral"); drop that rule to use this.
+ */
+:root.dark {
+  color-scheme: dark;
+
+  --background: #161513;
+  --foreground: #f1efea;
+  --card: #1f1e1b;
+  --card-foreground: #f1efea;
+  --popover: #1f1e1b;
+  --popover-foreground: #f1efea;
+  --primary: #f1efea;
+  --primary-foreground: #1c1b19;
+  --secondary: #2a2925;
+  --secondary-foreground: #f1efea;
+  --muted: #2a2925;
+  --muted-foreground: #a29f97;
+  --subtle-foreground: #cfccc3;
+  --faint-foreground: #8a877f;
+  --faintest-foreground: #6b6862;
+  --accent: #2a2925;
+  --accent-foreground: #f1efea;
+  --destructive: #f87171;
+  --border: #34322e;
+  --input: #3d3b36;
+  --ring: #6b6862;
+  --line: #4a4843;
+  --well: #1b1a17;
+
+  --sidebar: #1b1a17;
+  --sidebar-foreground: #f1efea;
+  --sidebar-primary: #f1efea;
+  --sidebar-primary-foreground: #1c1b19;
+  --sidebar-accent: #2a2925;
+  --sidebar-accent-foreground: #f1efea;
+  --sidebar-border: #34322e;
+  --sidebar-ring: #6b6862;
+
+  --up: #4ade80;
+  --down: #f87171;
+  --positive: #4ade80;
+  --negative: #f87171;
+  --chip-neutral: #34322e;
+  --chip-negative: #3a1517;
+  --chip-negative-foreground: #fca5a5;
+  --chip-positive: #10291a;
+  --chip-positive-foreground: #86efac;
+  --sample: #3a3420;
+  --sample-foreground: #e3d28f;
+  --warning-foreground: #e3c070;
+  --status-good: #4ade80;
+  --status-warning: #e3c070;
+  --status-neutral: #6b6862;
+
+  --chart-1: #4ade80;
+  --chart-2: #f87171;
+  --chart-3: #f1efea;
+  --chart-4: #e3c070;
+  --chart-5: #a29f97;
+  --chart-6: #86efac;
+  --chart-7: #fca5a5;
+  --chart-8: #cfccc3;
+  --chart-other: #4a4843;
+  --series: #60a5fa;
+}
+
+/* Under a shadcn theme (data-base), the extra roles follow that theme's surfaces. Signals keep their meaning. */
+:root[data-base] {
+  --faint-foreground: color-mix(in oklab, var(--muted-foreground) 82%, var(--background));
+  --faintest-foreground: color-mix(in oklab, var(--muted-foreground) 64%, var(--background));
+  --line: color-mix(in oklab, var(--muted-foreground) 40%, var(--background));
+  --well: color-mix(in oklab, var(--muted) 50%, var(--card));
+  --chip-neutral: var(--secondary);
+}
+
+@theme inline {
+  --font-sans: var(--app-font);
+  --font-mono: var(--mono-font);
+  --font-heading: var(--font-sans);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-faint-foreground: var(--faint-foreground);
+  --color-faintest-foreground: var(--faintest-foreground);
+  --color-line: var(--line);
+  --color-well: var(--well);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-chip-neutral: var(--chip-neutral);
+  --color-chip-negative: var(--chip-negative);
+  --color-chip-negative-foreground: var(--chip-negative-foreground);
+  --color-chip-positive: var(--chip-positive);
+  --color-chip-positive-foreground: var(--chip-positive-foreground);
+  --color-sample: var(--sample);
+  --color-sample-foreground: var(--sample-foreground);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-status-good: var(--status-good);
+  --color-status-warning: var(--status-warning);
+  --color-status-neutral: var(--status-neutral);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+  --color-chart-other: var(--chart-other);
+  --color-series: var(--series);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+  }
   body {
-    @apply bg-background text-foreground;
-    }
-  button:not(:disabled), [role="button"]:not(:disabled) {
+    @apply bg-background text-foreground antialiased;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+  /* Figures line up in columns. */
+  .figure,
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+  }
+  /* In RTL a figure still reads left to right: isolated so its sign or unit never moves. */
+  [dir="rtl"] .figure {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: right;
+  }
+  [dir="rtl"] .figure.text-end,
+  [dir="rtl"] .figure.text-right {
+    text-align: left;
+  }
+  [dir="rtl"] .figure.text-center {
+    text-align: center;
+  }
+}
+
+/* A marquee for a row that does not fit: two copies of the list slide by one length. */
+@theme {
+  --animate-ticker: ticker linear infinite;
+  @keyframes ticker {
+    to {
+      transform: translateX(-50%);
     }
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [dir="rtl"] .animate-ticker {
+    animation-name: ticker-rtl;
+  }
+}
+@keyframes ticker-rtl {
+  to {
+    transform: translateX(50%);
+  }
 }

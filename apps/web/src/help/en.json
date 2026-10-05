@@ -1,0 +1,30 @@
+{
+  "source-provider": {
+    "tip": "As reported by the data provider."
+  },
+  "source-ours": {
+    "tip": "Calculated by this app from stored data."
+  },
+  "source-entered": {
+    "tip": "Entered by hand."
+  },
+  "page-home": {
+    "tip": "The workspace at a glance.",
+    "what": "Totals across the top, two charts, and every order.",
+    "source": "Sample data in this template."
+  },
+  "card-value": {
+    "tip": "The value at each day's close.",
+    "how": "One point per day; the table holds the last ten."
+  },
+  "card-monthly": {
+    "tip": "Money in less money out, by month.",
+    "limits": "A month with no activity shows no column."
+  },
+  "card-score": {
+    "tip": "A single score out of 100."
+  },
+  "page-library": {
+    "tip": "Each figure with its date and where it comes from."
+  }
+}

@@ -2,9 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 22 22%27%3E%3Crect width=%2722%27 height=%2722%27 rx=%276%27 fill=%27%231c1b19%27/%3E%3C/svg%3E" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vite-monorepo</title>
+    <title>Dashboard</title>
+    <script>
+      // Before the first paint, so the wrong theme or direction never flashes.
+      // Same keys and rules as src/lib/theme.ts.
+      ;(function () {
+        var p = {}
+        try {
+          p = JSON.parse(localStorage.getItem("preferences") || "{}") || {}
+        } catch (e) {}
+        var h = document.documentElement
+        var mode = p.mode || "system"
+        var dark =
+          mode === "system"
+            ? matchMedia("(prefers-color-scheme: dark)").matches
+            : mode === "dark"
+        h.classList.toggle("dark", dark)
+        var base = p.base || "warm"
+        if (base === "warm" && dark) base = "neutral"
+        if (base !== "warm") h.setAttribute("data-base", base)
+        if (p.accent && p.accent !== "default")
+          h.setAttribute("data-accent", p.accent)
+        if (p.radius != null) h.style.setProperty("--radius", p.radius + "rem")
+        h.lang = p.lang || "en"
+        h.dir = p.lang === "ar" ? "rtl" : "ltr"
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
